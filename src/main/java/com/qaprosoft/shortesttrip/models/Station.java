@@ -10,7 +10,7 @@ import com.qaprosoft.shortesttrip.searchalgorithmtest.Node;
 public class Station extends AbstractEntity {
 
 	private String name;
-	private Integer cityId;
+	private Long cityId;
 	private Double distance = Double.MAX_VALUE;
 	private HashMap<Station, Double> adjacentStations = new HashMap<>();
 	private List<Station> shortestPath = new LinkedList<>();
@@ -31,11 +31,11 @@ public class Station extends AbstractEntity {
 		this.name = name;
 	}
 
-	public Integer getCityId() {
+	public Long getCityId() {
 		return cityId;
 	}
 
-	public void setCityId(Integer cityId) {
+	public void setCityId(Long cityId) {
 		this.cityId = cityId;
 	}
 
