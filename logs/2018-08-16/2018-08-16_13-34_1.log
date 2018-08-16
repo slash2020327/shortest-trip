@@ -1,8 +1,0 @@
-2018-08-16 13:33:32 [main] DEBUG qaprosoft.shortesttrip.service.IAdjacentStationService.getAll - ==> Parameters: 
-2018-08-16 13:33:32 [main] DEBUG qaprosoft.shortesttrip.service.IAdjacentStationService.getAll - <==      Total: 23
-2018-08-16 13:34:21 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.log4j2.Log4j2Impl' adapter.
-2018-08-16 13:34:21 [main] DEBUG apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
-2018-08-16 13:34:21 [main] DEBUG apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
-2018-08-16 13:34:21 [main] DEBUG apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
-2018-08-16 13:34:21 [main] DEBUG apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
-2018-08-16 13:34:21 [main] DEBUG apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection

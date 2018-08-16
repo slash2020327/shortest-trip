@@ -1,9 +1,0 @@
-2018-08-16 17:06:29 [main] DEBUG qaprosoft.shortesttrip.service.IAdjacentStationService.getAll - ==> Parameters: 
-2018-08-16 17:06:29 [main] DEBUG qaprosoft.shortesttrip.service.IAdjacentStationService.getAll - <==      Total: 23
-2018-08-16 17:06:29 [main] DEBUG apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
-2018-08-16 17:06:29 [main] DEBUG apache.ibatis.datasource.pooled.PooledDataSource - Created connection 2051120548.
-2018-08-16 17:06:29 [main] DEBUG apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@7a419da4]
-2018-08-16 17:06:29 [main] DEBUG qaprosoft.shortesttrip.service.IStationService.getAll - ==>  Preparing: SELECT * FROM Stations 
-2018-08-16 17:06:29 [main] DEBUG qaprosoft.shortesttrip.service.IStationService.getAll - ==> Parameters: 
-2018-08-16 17:06:29 [main] DEBUG qaprosoft.shortesttrip.service.IStationService.getAll - <==      Total: 20
-2018-08-16 17:54:00 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.log4j2.Log4j2Impl' adapter.
