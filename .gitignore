@@ -1,6 +1,13 @@
 /target/
+<<<<<<< HEAD
 
 /logs/
 /.settings/
 .project
 .classpath
+=======
+/logs/
+.settings/
+.project
+.classpath
+>>>>>>> 1fa22f839ed85f35f88a9c13d628ef802f8cf4ee
