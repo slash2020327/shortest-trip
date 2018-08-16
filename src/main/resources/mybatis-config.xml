@@ -17,6 +17,7 @@
 		</environment>
 	</environments>
 	<mappers>
+	<mapper resource="mappers/AdjacentStationMapper.xml" />
 		<mapper resource="mappers/StationMapper.xml" />
 	</mappers>
 </configuration>

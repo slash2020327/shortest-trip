@@ -1,31 +1,19 @@
 package com.qaprosoft.shortesttrip.models;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Station extends AbstractEntity {
-	
+
 	private String name;
 	private Long cityId;
-	private Double distanceFromSource = Double.MAX_VALUE;
-	private HashMap<Station, Double> adjacentStations = new HashMap<>();
-	private List<Station> shortestPathFromSource = new LinkedList<>();
-	
-	public Station() {		
+	private ArrayList<Road> neighborhood = new ArrayList<Road>();
+
+	public Station() {
 	}
 
 	public Station(Long id, String name) {
 		super(id);
 		this.name = name;
-	}
-	
-	public List<Station> getShortestPath() {
-		return shortestPathFromSource;
-	}
-
-	public void setShortestPath(List<Station> shortestPath) {
-		this.shortestPathFromSource = shortestPath;
 	}
 
 	public String getName() {
@@ -44,30 +32,47 @@ public class Station extends AbstractEntity {
 		this.cityId = cityId;
 	}
 
-	public Double getDistance() {
-		return distanceFromSource;
+	public void addNeighbor(Road road) {
+		 if (this.neighborhood.contains(road)) {
+		 return;
+		 }
+		this.neighborhood.add(road);
+	}
+
+	public boolean containsNeighbor(Road other) {
+		return this.neighborhood.contains(other);
+	}
+
+	public Road getNeighbor(int index) {
+		return this.neighborhood.get(index);
+	}
+
+	Road removeNeighbor(int index) {
+		return this.neighborhood.remove(index);
+	}
+
+	public void removeNeighbor(Road e) {
+		this.neighborhood.remove(e);
+	}
+
+	public int getNeighborCount() {
+		return this.neighborhood.size();
+	}
+
+	public boolean equals(Object other) {
+		if (!(other instanceof Road)) {
+			return false;
+		}
+		Road v = (Road) other;
+		return this.getId().equals(v.getToStation().getId());
+	}
+
+	public ArrayList<Road> getNeighbors() {
+		return new ArrayList<Road>(this.neighborhood);
 	}
 
 	@Override
 	public String toString() {
-		return "Station [Id=" + getId() + ", name=" + name + ", cityId=" + cityId + ", distance=" + distanceFromSource + "]";
+		return "Station [name=" + name + ", cityId=" + cityId + ", stationId=" + getId() + "]";
 	}
-
-	public void setDistance(Double distance) {
-		this.distanceFromSource = distance;
-	}
-
-	public HashMap<Station, Double> getAdjacentStations() {
-		return adjacentStations;
-	}
-
-	public void setAdjacentStations(HashMap<Station, Double> adjacentStations) {
-		this.adjacentStations = adjacentStations;
-	}
-
-	public void addDestination(Station destination, Double distance) {
-		adjacentStations.put(destination, distance);
-	}
-	
-
 }

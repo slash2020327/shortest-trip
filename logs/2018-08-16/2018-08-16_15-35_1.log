@@ -1,0 +1,7 @@
+2018-08-16 15:34:20 [main] DEBUG apache.ibatis.datasource.pooled.PooledDataSource - Created connection 694452085.
+2018-08-16 15:34:20 [main] DEBUG apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@29647f75]
+2018-08-16 15:34:20 [main] DEBUG qaprosoft.shortesttrip.service.IAdjacentStationService.getAll - ==>  Preparing: SELECT * FROM Adjacent_stations INNER JOIN Stations ON Stations.id = Adjacent_stations.station_id 
+2018-08-16 15:34:20 [main] DEBUG qaprosoft.shortesttrip.service.IAdjacentStationService.getAll - ==> Parameters: 
+2018-08-16 15:34:20 [main] DEBUG qaprosoft.shortesttrip.service.IAdjacentStationService.getAll - <==      Total: 23
+2018-08-16 15:35:17 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.log4j2.Log4j2Impl' adapter.
+2018-08-16 15:35:17 [main] DEBUG apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.

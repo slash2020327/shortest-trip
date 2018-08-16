@@ -1,17 +1,46 @@
 package com.qaprosoft.shortesttrip.models;
 
-public class Road {
+public class Road implements Comparable<Road>{
 
 	private Station fromStation;
 	private Station toStation;
 	private Double distance;
 	
+	public Road() {
+		
+	}
+	
 	public Road(Station fromStation, Station toStation, Double distance) {
-		super();
-		this.fromStation = fromStation;
-		this.toStation = toStation;
+		this.fromStation = (fromStation.getId().compareTo(toStation.getId()) <= 0) ? fromStation : toStation;
+		this.toStation = (this.fromStation == fromStation) ? toStation : fromStation;
 		this.distance = distance;
 	}
+	
+	public Station getNeighbor(Station current) {
+		if (!(current.equals(fromStation) || current.equals(toStation))) {
+			return null;
+		}
+		return (current.equals(fromStation)) ? toStation : fromStation;
+	}
+
+	public int compareTo(Road other) {
+		if (this.distance > other.distance) return 1;
+		if (this.distance < other.distance) return -1;
+		return 0;
+	}
+
+//	public int hashCode() {
+//		return (fromStation.getId() + toStation.getId()).hashCode();
+//	}
+
+	public boolean equals(Object other) {
+		if (!(other instanceof Road)) {
+			return false;
+		}
+		Road e = (Road) other;
+		return e.fromStation.equals(this.fromStation) && e.toStation.equals(this.toStation);
+	}
+	
 	public Station getFromStation() {
 		return fromStation;
 	}

@@ -2,10 +2,8 @@ package com.qaprosoft.shortesttrip.searchalgorithmtesttwo;
 
 import java.util.ArrayList;
 
-import com.qaprosoft.shortesttrip.models.Road;
-
 public class Vertex {
-	private ArrayList<Road> neighborhood;
+	private ArrayList<Edge> neighborhood;
 	private String label;
 
 	/**
@@ -18,7 +16,7 @@ public class Vertex {
 	 */
 	public Vertex(String label) {
 		this.label = label;
-		this.neighborhood = new ArrayList<Road>();
+		this.neighborhood = new ArrayList<Edge>();
 	}
 
 	/**
@@ -27,14 +25,14 @@ public class Vertex {
 	 *
 	 * 032
 	 * 
-	 * @param road
+	 * @param edge
 	 *            The edge to add 033
 	 */
-	public void addNeighbor(Road road) {
-		if (this.neighborhood.contains(road)) {
+	public void addNeighbor(Edge edge) {
+		if (this.neighborhood.contains(edge)) {
 			return;
 		}
-		this.neighborhood.add(road);
+		this.neighborhood.add(edge);
 	}
 
 	/**
@@ -42,12 +40,12 @@ public class Vertex {
 	 *
 	 * 045
 	 * 
-	 * @param road
+	 * @param other
 	 *            The edge for which to search 046
 	 * @return true iff other is contained in this.neighborhood 047
 	 */
-	public boolean containsNeighbor(Road road) {
-		return this.neighborhood.contains(road);
+	public boolean containsNeighbor(Edge other) {
+		return this.neighborhood.contains(other);
 	}
 
 	/**
@@ -59,7 +57,7 @@ public class Vertex {
 	 *            The index of the Edge to retrieve 055
 	 * @return Edge The Edge at the specified index in this.neighborhood 056
 	 */
-	public Road getNeighbor(int index) {
+	public Edge getNeighbor(int index) {
 		return this.neighborhood.get(index);
 	}
 
@@ -72,7 +70,7 @@ public class Vertex {
 	 *            The index of the edge to remove from this.neighborhood 065
 	 * @return Edge The removed Edge 066
 	 */
-	Road removeNeighbor(int index) {
+	Edge removeNeighbor(int index) {
 		return this.neighborhood.remove(index);
 	}
 
@@ -84,8 +82,8 @@ public class Vertex {
 	 * @param e
 	 *            The Edge to remove from this.neighborhood 074
 	 */
-	public void removeNeighbor(Road road) {
-		this.neighborhood.remove(road);
+	public void removeNeighbor(Edge e) {
+		this.neighborhood.remove(e);
 	}
 
 	/**
@@ -158,7 +156,7 @@ public class Vertex {
 	 * @return ArrayList<Edge> A copy of this.neighborhood. Modifying the returned
 	 *         131 ArrayList will not affect the neighborhood of this Vertex 132
 	 */
-	public ArrayList<Road> getNeighbors() {
-		return new ArrayList<Road>(this.neighborhood);
+	public ArrayList<Edge> getNeighbors() {
+		return new ArrayList<Edge>(this.neighborhood);
 	}
 }

@@ -5,19 +5,28 @@
   
 <mapper	namespace="com.qaprosoft.shortesttrip.service.IAdjacentStationService">
 	
-	<resultMap id="AdjacentStation"	type="com.qaprosoft.shortesttrip.models.AdjacentStation">
+	<resultMap id="adjacentStation"	type="com.qaprosoft.shortesttrip.models.AdjacentStation">
 		<id property="id" column="id" />
 		<result property="distanceStation" column="distance" />
-		<association property = "adjacentStation" column = "adjacent_station_id" javaType = "com.qaprosoft.shortesttrip.models.Station" select = "by.baranov.dao.IStationService.getById" />
-		<association property = "station" column = "station_id" javaType = "com.qaprosoft.shortesttrip.models.Station" select = "by.baranov.dao.IStationService.getById" />
+		<association property="station" resultMap="station" />
+		<association property="adjacentStation" resultMap="adjacentStationForStation" />
 	</resultMap>
-	
-	<select id="getById" parameterType="java.lang.Long"	resultMap="AdjacentStation">
+	<resultMap id="station"	type="com.qaprosoft.shortesttrip.models.Station">
+		<id property="id" column="station_id" />
+		<result property="name" column="name" />
+		<result property="cityId" column="city_id" />
+	</resultMap>
+	<resultMap id="adjacentStationForStation"	type="com.qaprosoft.shortesttrip.models.Station">
+		<id property="id" column="adjacent_station_id" />
+		<result property="name" column="name" />
+		<result property="cityId" column="city_id" />
+	</resultMap>
+	<select id="getById" parameterType="java.lang.Long"	resultMap="adjacentStation">
 		SELECT * FROM Adjacent_stations WHERE id = #{id}
 	</select>
 	
-	<select id="getAll" resultMap="AdjacentStation">
-		SELECT * FROM Adjacent_stations
+	<select id="getAll" resultMap="adjacentStation">
+		SELECT * FROM Adjacent_stations INNER JOIN Stations ON Stations.id = Adjacent_stations.station_id
 	</select>
 
 </mapper>

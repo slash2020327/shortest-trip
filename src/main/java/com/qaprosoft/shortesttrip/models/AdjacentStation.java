@@ -5,13 +5,6 @@ public class AdjacentStation extends AbstractEntity{
 	private Station station;
 	private Station adjacentStation;
 	private Double distanceStation;
-	
-	public AdjacentStation(Long id, Station station, Station adjacentStation, Double distanceStation) {
-		super(id);
-		this.station = station;
-		this.adjacentStation = adjacentStation;
-		this.distanceStation = distanceStation;
-	}
 
 	public Station getStation() {
 		return station;
