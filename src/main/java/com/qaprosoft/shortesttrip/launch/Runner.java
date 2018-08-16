@@ -1,5 +1,6 @@
 package com.qaprosoft.shortesttrip.launch;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -8,10 +9,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import com.qaprosoft.shortesttrip.models.AdjacentStation;
+import com.qaprosoft.shortesttrip.models.Road;
 import com.qaprosoft.shortesttrip.models.Station;
 import com.qaprosoft.shortesttrip.searchalgorithmtest.Dijkstra;
 import com.qaprosoft.shortesttrip.searchalgorithmtest.Graph;
 import com.qaprosoft.shortesttrip.searchalgorithmtest.Node;
+import com.qaprosoft.shortesttrip.service.mybatis.impl.AdjacentStationService;
 import com.qaprosoft.shortesttrip.service.mybatis.impl.StationService;
 
 public class Runner {
@@ -68,5 +72,15 @@ public class Runner {
 //	    graph.setStations(stationsConvert);
 //		HashMap<Station, Double> adjacentStations = ss.getAllAdjacentStationsByStationId((long) 1);
 //		System.out.println(adjacentStations);
+		
+		AdjacentStationService ass = new AdjacentStationService();
+		
+		ArrayList<Road> roads = new ArrayList<Road>();
+		
+		for (AdjacentStation adjacentStation : ass.getAll()) {
+			Road road = new Road (adjacentStation.getStation(), adjacentStation.getAdjacentStation(), adjacentStation.getDistanceStation());
+			roads.add(road);
+		}
+				
 	}
 }

@@ -3,24 +3,29 @@ package com.qaprosoft.shortesttrip.models;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-
-import com.qaprosoft.shortesttrip.searchalgorithmtest.Node;
 
 public class Station extends AbstractEntity {
-
+	
 	private String name;
 	private Long cityId;
-	private Double distance = Double.MAX_VALUE;
+	private Double distanceFromSource = Double.MAX_VALUE;
 	private HashMap<Station, Double> adjacentStations = new HashMap<>();
-	private List<Station> shortestPath = new LinkedList<>();
+	private List<Station> shortestPathFromSource = new LinkedList<>();
+	
+	public Station() {		
+	}
 
+	public Station(Long id, String name) {
+		super(id);
+		this.name = name;
+	}
+	
 	public List<Station> getShortestPath() {
-		return shortestPath;
+		return shortestPathFromSource;
 	}
 
 	public void setShortestPath(List<Station> shortestPath) {
-		this.shortestPath = shortestPath;
+		this.shortestPathFromSource = shortestPath;
 	}
 
 	public String getName() {
@@ -40,16 +45,16 @@ public class Station extends AbstractEntity {
 	}
 
 	public Double getDistance() {
-		return distance;
+		return distanceFromSource;
 	}
 
 	@Override
 	public String toString() {
-		return "Station [name=" + name + ", cityId=" + cityId + ", distance=" + distance + ", getId()=" + getId() + "]";
+		return "Station [Id=" + getId() + ", name=" + name + ", cityId=" + cityId + ", distance=" + distanceFromSource + "]";
 	}
 
 	public void setDistance(Double distance) {
-		this.distance = distance;
+		this.distanceFromSource = distance;
 	}
 
 	public HashMap<Station, Double> getAdjacentStations() {

@@ -2,23 +2,24 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="com.qaprosoft.shortesttrip.service.IStationService">
-	<resultMap id="station"
-		type="com.qaprosoft.shortesttrip.models.Station">
+  
+<mapper	namespace="com.qaprosoft.shortesttrip.service.IStationService">
+	
+	<resultMap id="station"	type="com.qaprosoft.shortesttrip.models.Station">
 		<id property="id" column="id" />
 		<result property="name" column="name" />
 		<result property="cityId" column="city_id" />
 	</resultMap>
-	<select id="getStationById" parameterType="java.lang.Long"
-		resultMap="station">
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="station">
 		SELECT * FROM Stations WHERE id = #{id}
 	</select>
+	
 	<select id="getAll" resultMap="station">
 		SELECT * FROM Stations
 	</select>
-	<select id="getAllAdjacentStationsByStationId"
-		parameterType="java.lang.Long" resultType="java.util.HashMap" resultMap="station">
+	
+	<select id="getAllAdjacentStationsByStationId" parameterType="java.lang.Long" resultType="java.util.HashMap" resultMap="station">
 		SELECT Stations.id,
 		Adjacent_stations.distance FROM Stations INNER JOIN
 		Adjacent_stations
@@ -26,4 +27,11 @@
 		WHERE
 		Adjacent_stations.station_id = #{id}
 	</select>
+	
+	<select id="getStationsByCityId" parameterType="java.lang.Long" resultMap="station">
+	
+	SELECT * FROM Stations LEFT JOIN Cities ON city.id = Station.city_id WHERE Cities.ID = #{id}
+		
+	</select>
+	
 </mapper>

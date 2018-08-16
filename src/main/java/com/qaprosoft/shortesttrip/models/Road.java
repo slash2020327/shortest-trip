@@ -5,6 +5,13 @@ public class Road {
 	private Station fromStation;
 	private Station toStation;
 	private Double distance;
+	
+	public Road(Station fromStation, Station toStation, Double distance) {
+		super();
+		this.fromStation = fromStation;
+		this.toStation = toStation;
+		this.distance = distance;
+	}
 	public Station getFromStation() {
 		return fromStation;
 	}

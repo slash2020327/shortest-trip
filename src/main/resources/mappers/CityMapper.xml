@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper	namespace="com.qaprosoft.shortesttrip.service.ICityService">
+	
+	<resultMap id="City" type="com.qaprosoft.shortesttrip.models.City">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<collection property = "stations" column = "id" javaType = "ArrayList" ofType = "com.qaprosoft.shortesttrip.models.City" select = "com.qaprosoft.shortesttrip.service.IStationService.getStationsByCityId"/>
+	</resultMap>
+	
+	<select id="getById" parameterType="java.lang.Long"	resultMap="City">
+		SELECT * FROM Cities WHERE id = #{id}
+	</select>
+	
+	<select id="getAll" resultMap="City">
+		SELECT * FROM Cities
+	</select>
+
+</mapper>
