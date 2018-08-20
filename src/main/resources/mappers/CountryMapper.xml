@@ -3,20 +3,16 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper
-	namespace="com.qaprosoft.shortesttrip.service.ICountryService">
+<mapper namespace="com.qaprosoft.shortesttrip.service.ICountryService">
 
 	<resultMap id="country"
 		type="com.qaprosoft.shortesttrip.models.Country">
 		<id property="id" column="id" />
 		<result property="name" column="name" />
-		<collection property="cities" column="id"
-			javaType="ArrayList" ofType="com.qaprosoft.shortesttrip.models.City"
-			select="com.qaprosoft.shortesttrip.service.ICityService.getCitiesByCountryId" />
+		<collection property="cities" column="id" javaType="ArrayList" ofType="com.qaprosoft.shortesttrip.models.City" select="com.qaprosoft.shortesttrip.service.ICityService.getCitiesByCountryId" />
 	</resultMap>
 
-	<select id="getById" parameterType="java.lang.Long"
-		resultMap="country">
+	<select id="getById" parameterType="java.lang.Long" resultMap="country">
 		SELECT * FROM Cities WHERE id = #{id}
 	</select>
 
@@ -24,15 +20,12 @@
 		SELECT * FROM Cities
 	</select>
 
-	<insert id="create"
-		parameterType="com.qaprosoft.shortesttrip.models.Country"
-		keyProperty="id" useGeneratedKeys="true">
+	<insert id="create" parameterType="com.qaprosoft.shortesttrip.models.Country" keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO Countries(name)
 		VALUES(#{name})
 	</insert>
 
-	<update id="update"
-		parameterType="com.qaprosoft.shortesttrip.models.Country">
+	<update id="update" parameterType="com.qaprosoft.shortesttrip.models.Country">
 		UPDATE Countries SET name = #{name} WHERE id = #{id}
 	</update>
 

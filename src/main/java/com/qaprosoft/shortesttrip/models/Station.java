@@ -35,48 +35,51 @@ public class Station extends AbstractEntity {
 	}
 
 	public void addNeighbor(Road road) {
-		 if (this.neighborhood.contains(road)) {
+		 if (neighborhood.contains(road)) {
 		 return;
 		 }
-		this.neighborhood.add(road);
+		neighborhood.add(road);
 	}
 
 	public boolean containsNeighbor(Road other) {
-		return this.neighborhood.contains(other);
+		return neighborhood.contains(other);
 	}
 
 	public Road getNeighbor(int index) {
-		return this.neighborhood.get(index);
+		return neighborhood.get(index);
 	}
 
 	Road removeNeighbor(int index) {
-		return this.neighborhood.remove(index);
+		return neighborhood.remove(index);
 	}
 
 	public void removeNeighbor(Road e) {
-		this.neighborhood.remove(e);
+		neighborhood.remove(e);
 	}
 
 	@JsonIgnore
 	public int getNeighborCount() {
-		return this.neighborhood.size();
+		return neighborhood.size();
 	}
-
+	public int hashCode() {
+		return getId().hashCode();
+	} 
+	
 	public boolean equals(Object other) {
-		if (!(other instanceof Road)) {
+		if (!(other instanceof Station)) {
 			return false;
 		}
-		Road v = (Road) other;
-		return this.getId().equals(v.getToStation().getId());
+		Station st = (Station) other;
+		return getId().equals(st.getId());
 	}
 
 	@JsonIgnore
 	public ArrayList<Road> getNeighbors() {
-		return new ArrayList<Road>(this.neighborhood);
+		return new ArrayList<Road>(neighborhood);
 	}
 
 	@Override
 	public String toString() {
-		return "Station [name=" + name + ", cityId=" + cityId + ", stationId=" + getId() + "]";
+		return "Station [Id=" + getId()+", name=" + name + ", cityId=" + cityId + "]";
 	}
 }

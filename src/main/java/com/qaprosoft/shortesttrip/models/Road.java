@@ -10,9 +10,9 @@ public class Road implements Comparable<Road>{
 		
 	}
 	
-	public Road (Station fromStation, Station toStation) {
-		this(fromStation, toStation, (double) 1);
-	}
+//	public Road (Station fromStation, Station toStation) {
+//		this(fromStation, toStation, (double) 1);
+//	}
 	
 	public Road(Station fromStation, Station toStation, Double distance) {
 		this.fromStation = (fromStation.getId().compareTo(toStation.getId()) <= 0) ? fromStation : toStation;
@@ -33,9 +33,9 @@ public class Road implements Comparable<Road>{
 		return 0;
 	}
 
-//	public int hashCode() {
-//		return (fromStation.getId() + toStation.getId()).hashCode();
-//	}
+	public int hashCode() {
+		return fromStation.getId().hashCode()*31 + toStation.getId().hashCode();
+	}
 
 	public boolean equals(Object other) {
 		if (!(other instanceof Road)) {
@@ -62,6 +62,11 @@ public class Road implements Comparable<Road>{
 	}
 	public void setDistance(Double distance) {
 		this.distance = distance;
+	}
+
+	@Override
+	public String toString() {
+		return "Road [fromStation=" + fromStation + ", toStation=" + toStation + ", distance=" + distance + "]";
 	}
 	
 	

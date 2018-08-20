@@ -8,6 +8,7 @@ public class Dijkstra {
 	
 	private Graph graph;
 	private Long initialStationId;
+	private Long destinationId;
 	private HashMap<Long, Long> predecessors;
 	private HashMap<Long, Double> distances;
 	private PriorityQueue<Station> availableStations;
@@ -97,6 +98,16 @@ public class Dijkstra {
 	}
 
 	public Double getDistanceTo(Long destinationLabel) {
+		this.destinationId = destinationLabel;
 		return this.distances.get(destinationLabel);
 	}
+
+	public Long getInitialStationId() {
+		return initialStationId;
+	}
+
+	public Long getDestinationId() {
+		return destinationId;
+	}
+	
 }

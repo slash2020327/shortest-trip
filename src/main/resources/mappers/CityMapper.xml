@@ -28,8 +28,7 @@
 		INSERT INTO Cities(name,country_id) VALUES(#{name},#{countryId}) 	
 	</insert>
 	
-	<update id="update"
-		parameterType="com.qaprosoft.shortesttrip.models.City">
+	<update id="update" parameterType="com.qaprosoft.shortesttrip.models.City">
 		UPDATE Cities SET name = #{name}, country_id = #{countryId} WHERE id = #{id}
 	</update>
 	
