@@ -20,5 +20,19 @@ private IAdjacentStationService adjacentStationService = MybatisUtil.getSqlSessi
 		AdjacentStation adjacentStation = adjacentStationService.getById(id);
 		return adjacentStation;
 	}
-	
+
+	@Override
+	public void delete(Long id) {
+		adjacentStationService.delete(id);				
+	}
+
+	@Override
+	public void update(AdjacentStation adjacentStation) {
+		adjacentStationService.update(adjacentStation);		
+	}
+
+	@Override
+	public void create(AdjacentStation adjacentStation) {
+		adjacentStationService.create(adjacentStation);		
+	}	
 }
