@@ -35,9 +35,9 @@ public class Runner {
 		}
 		System.out.println(roads);
 	    for (Road road:roads) {
-//	    	System.out.println(road.getFromStation());
-//	    	System.out.println(road.getToStation());
-//	    	System.out.println(road.getDistance());
+	    	System.out.println(road.getFromStation());
+	    	System.out.println(road.getToStation());
+	    	System.out.println(road.getDistance());
 	    	 graph.addRoad(road.getFromStation(), road.getToStation(), road.getDistance());	
 	    }
 	    Dijkstra dijkstra = new Dijkstra(graph, (long) 1);

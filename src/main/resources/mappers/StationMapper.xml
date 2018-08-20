@@ -28,10 +28,21 @@
 		Adjacent_stations.station_id = #{id}
 	</select>
 	
-	<select id="getStationsByCityId" parameterType="java.lang.Long" resultMap="station">
-	
-	SELECT * FROM Stations LEFT JOIN Cities ON city.id = Station.city_id WHERE Cities.ID = #{id}
-		
+	<select id="getStationsByCityId" parameterType="java.lang.Long" resultMap="station">	
+	SELECT Stations.id, Stations.name, Stations.city_id FROM Stations INNER JOIN Cities ON Cities.id = Stations.city_id WHERE Cities.ID = #{id}	
 	</select>
+	
+	<insert id="create" parameterType="com.qaprosoft.shortesttrip.models.Station" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Stations(name,city_id) VALUES(#{name},#{cityId}) 	
+	</insert>
+	
+	<update id="update"
+		parameterType="com.qaprosoft.shortesttrip.models.Station">
+		UPDATE Stations SET name = #{name}, city_id = #{cityId} WHERE id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.Long">
+		DELETE FROM Cities WHERE id = #{id}
+	</delete>
 	
 </mapper>

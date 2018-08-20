@@ -10,7 +10,15 @@ public interface IStationService {
 	List<Station> getAll();
 
 	Station getById(Long id);
+	
+	List<Station> getStationsByCityId(Long id);
 
+	void delete(Long id);
+
+	void update(Station station);
+
+	void create(Station station);
+	
 	@MapKey("id")
 	HashMap<Station, Double> getAllAdjacentStationsByStationId(Long id);
 }

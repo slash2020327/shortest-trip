@@ -23,7 +23,7 @@ public class Graph {
 	}
 
 	public boolean addRoad(Station one, Station two) {
-		return addRoad(one, two);
+		return addRoad(one, two, (double) 1);
 	}
 
 	public boolean addRoad(Station one, Station two, Double distance) {

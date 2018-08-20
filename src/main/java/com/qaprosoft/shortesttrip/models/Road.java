@@ -10,6 +10,10 @@ public class Road implements Comparable<Road>{
 		
 	}
 	
+	public Road (Station fromStation, Station toStation) {
+		this(fromStation, toStation, (double) 1);
+	}
+	
 	public Road(Station fromStation, Station toStation, Double distance) {
 		this.fromStation = (fromStation.getId().compareTo(toStation.getId()) <= 0) ? fromStation : toStation;
 		this.toStation = (this.fromStation == fromStation) ? toStation : fromStation;

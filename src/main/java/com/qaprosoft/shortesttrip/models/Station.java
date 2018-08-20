@@ -1,11 +1,13 @@
 package com.qaprosoft.shortesttrip.models;
 
 import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Station extends AbstractEntity {
 
 	private String name;
 	private Long cityId;
+	@JsonIgnore
 	private ArrayList<Road> neighborhood = new ArrayList<Road>();
 
 	public Station() {
@@ -55,6 +57,7 @@ public class Station extends AbstractEntity {
 		this.neighborhood.remove(e);
 	}
 
+	@JsonIgnore
 	public int getNeighborCount() {
 		return this.neighborhood.size();
 	}
@@ -67,6 +70,7 @@ public class Station extends AbstractEntity {
 		return this.getId().equals(v.getToStation().getId());
 	}
 
+	@JsonIgnore
 	public ArrayList<Road> getNeighbors() {
 		return new ArrayList<Road>(this.neighborhood);
 	}

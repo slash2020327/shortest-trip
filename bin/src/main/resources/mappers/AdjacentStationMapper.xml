@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper	namespace="com.qaprosoft.shortesttrip.service.IAdjacentStationService">
+	
+	<resultMap id="adjacentStation"	type="com.qaprosoft.shortesttrip.models.AdjacentStation">
+		<id property="id" column="id" />
+		<result property="distanceStation" column="distance" />
+		<association property="station" resultMap="station" />
+		<association property="adjacentStation" resultMap="adjacentStationForStation" />
+	</resultMap>
+	<resultMap id="station"	type="com.qaprosoft.shortesttrip.models.Station">
+		<id property="id" column="station_id" />
+		<result property="name" column="name" />
+		<result property="cityId" column="city_id" />
+	</resultMap>
+	<resultMap id="adjacentStationForStation"	type="com.qaprosoft.shortesttrip.models.Station">
+		<id property="id" column="adjacent_station_id" />
+		<result property="name" column="name" />
+		<result property="cityId" column="city_id" />
+	</resultMap>
+	<select id="getById" parameterType="java.lang.Long"	resultMap="adjacentStation">
+		SELECT * FROM Adjacent_stations WHERE id = #{id}
+	</select>
+	
+	<select id="getAll" resultMap="adjacentStation">
+		SELECT * FROM Adjacent_stations INNER JOIN Stations ON Stations.id = Adjacent_stations.station_id
+	</select>
+
+</mapper>

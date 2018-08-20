@@ -5,18 +5,36 @@
   
 <mapper	namespace="com.qaprosoft.shortesttrip.service.ICityService">
 	
-	<resultMap id="City" type="com.qaprosoft.shortesttrip.models.City">
+	<resultMap id="city" type="com.qaprosoft.shortesttrip.models.City">
 		<id property="id" column="id" />
 		<result property="name" column="name" />
-		<collection property = "stations" column = "id" javaType = "ArrayList" ofType = "com.qaprosoft.shortesttrip.models.City" select = "com.qaprosoft.shortesttrip.service.IStationService.getStationsByCityId"/>
+		<result property="countyId" column="country_id" />
+		<collection property = "stationsOfCity" column = "id" javaType = "ArrayList" ofType = "com.qaprosoft.shortesttrip.models.Station" select = "com.qaprosoft.shortesttrip.service.IStationService.getStationsByCityId"/>
 	</resultMap>
 	
-	<select id="getById" parameterType="java.lang.Long"	resultMap="City">
+	<select id="getById" parameterType="java.lang.Long"	resultMap="city">
 		SELECT * FROM Cities WHERE id = #{id}
 	</select>
 	
-	<select id="getAll" resultMap="City">
+	<select id="getAll" resultMap="city">
 		SELECT * FROM Cities
 	</select>
-
+	
+	<select id="getCitiesByCountryId" parameterType="java.lang.Long" resultMap="city">
+		SELECT Cities.id, Cities.name, Cities.country_id FROM Cities INNER JOIN Countries ON Countries.id=Cities.country_id WHERE Countries.id = #{id}
+	</select>
+	
+	<insert id="create" parameterType="com.qaprosoft.shortesttrip.models.City" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Cities(name,country_id) VALUES(#{name},#{countryId}) 	
+	</insert>
+	
+	<update id="update"
+		parameterType="com.qaprosoft.shortesttrip.models.City">
+		UPDATE Cities SET name = #{name}, country_id = #{countryId} WHERE id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.Long">
+		DELETE FROM Cities WHERE id = #{id}
+	</delete>
+	
 </mapper>

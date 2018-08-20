@@ -5,6 +5,7 @@ import java.util.List;
 public class City extends AbstractEntity {
 	
 	private String name;
+	private Long countryId;
 	private List<Station> stationsOfCity;
 	
 	public City() {		
@@ -23,6 +24,14 @@ public class City extends AbstractEntity {
 		this.name = name;
 	}
 	
+	public Long getCountyId() {
+		return countryId;
+	}
+
+	public void setCountyId(Long countyId) {
+		this.countryId = countyId;
+	}
+
 	public List<Station> getStationsOfCity() {
 		return stationsOfCity;
 	}
