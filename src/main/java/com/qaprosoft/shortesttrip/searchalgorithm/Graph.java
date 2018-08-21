@@ -14,34 +14,20 @@ public class Graph {
 		this.roads = new HashMap<Integer, Road>();
 	}
 
-	public Graph(ArrayList<Station> stations) {
-		this.stations = new HashMap<Long, Station>();
-		this.roads = new HashMap<Integer, Road>();
-		for (Station s : stations) {
-			this.stations.put(s.getId(), s);
-		}
-	}
-
-//	public boolean addRoad(Station one, Station two) {
-//		return addRoad(one, two, (double) 1);
-//	}
-
 	public boolean addRoad(Station one, Station two, Double distance) {
 		if (one.equals(two)) {
 			return false;
 		}
-		// ensures the Edge is not in the Graph
-		Road r = new Road(one, two, distance);
-		if (roads.containsKey(r.hashCode())) {
+		Road road = new Road(one, two, distance);
+		if (roads.containsKey(road.hashCode())) {
 			return false;
 		}
-		// and that the Edge isn't already incident to one of the vertices
-		else if (one.containsNeighbor(r) || two.containsNeighbor(r)) {
+		else if (one.containsNeighbor(road) || two.containsNeighbor(road)) {
 			return false;
 		}
-		roads.put(r.hashCode(), r);
-		one.addNeighbor(r);
-		two.addNeighbor(r);
+		roads.put(road.hashCode(), road);
+		one.addNeighbor(road);
+		two.addNeighbor(road);
 		return true;
 	}
 
@@ -52,10 +38,10 @@ public class Graph {
 		return this.roads.containsKey(r.hashCode());
 	}
 
-	public Road removeRoad(Road r) {
-		r.getFromStation().removeNeighbor(r);
-		r.getToStation().removeNeighbor(r);
-		return this.roads.remove(r.hashCode());
+	public Road removeRoad(Road road) {
+		road.getFromStation().removeNeighbor(road);
+		road.getToStation().removeNeighbor(road);
+		return this.roads.remove(road.hashCode());
 	}
 
 	public boolean containsStation(Station station) {

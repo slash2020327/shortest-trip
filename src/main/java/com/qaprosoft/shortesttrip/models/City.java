@@ -6,16 +6,8 @@ public class City extends AbstractEntity {
 	
 	private String name;
 	private Long countryId;
-	private List<Station> stationsOfCity;
-	
-	public City() {		
-	}
-	
-	public City (Long id, String name) {
-		super(id);
-		this.name = name;		
-	}
-	
+	private List<Station> stationsOfCity;	
+		
 	public String getName() {
 		return name;
 	}

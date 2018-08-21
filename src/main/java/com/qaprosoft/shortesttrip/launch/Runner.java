@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qaprosoft.shortesttrip.models.AdjacentStation;
+import com.qaprosoft.shortesttrip.models.Road;
 import com.qaprosoft.shortesttrip.models.Station;
 import com.qaprosoft.shortesttrip.searchalgorithm.Dijkstra;
 import com.qaprosoft.shortesttrip.searchalgorithm.Graph;
@@ -15,6 +16,8 @@ import com.qaprosoft.shortesttrip.service.mybatis.impl.StationService;
 
 public class Runner {
 	private static Logger logger = LogManager.getLogger();
+	private static final long START_STATION_ID = 1;
+	private static final long DESTINATION_STATION_ID = 16;
 
 	public static void main(String[] args) {
 		
@@ -31,16 +34,22 @@ public class Runner {
 			for (AdjacentStation adjs : adjacentStations) {
 				graph.addRoad(adjs.getStation(), adjs.getAdjacentStation(), adjs.getDistanceStation());	
 			}
-		logger.log(Level.INFO, "\n All roads of the Graph = \n" + graph.getRoads());
 		
-	    Dijkstra dijkstra = new Dijkstra(graph, (long) 1);
-	    Double shortDistance = dijkstra.getDistanceTo((long) 5);	    
+		for (Station station : stations) {
+			for (Road road : graph.getRoads()) {
+				if (station.getId() == road.getFromStation().getId()) {
+					station.addNeighbor(road);					
+				}
+			}
+		}			
+	
+	    Dijkstra dijkstra = new Dijkstra(graph, START_STATION_ID);
+	    Double shortDistance = dijkstra.getDistanceTo(DESTINATION_STATION_ID);	    
 	    logger.log(Level.INFO, "\n Distance from station with id="+ dijkstra.getInitialStationId()+ 
 	    		" to station with id=" + dijkstra.getDestinationId() + " equals "+ shortDistance);
 	    
-	    
-	    logger.log(Level.INFO, "\n Shortest path from station with id "+ dijkstra.getInitialStationId()+ 
-				" to station with id=" + dijkstra.getDestinationId() + " crosses next stations : "+ dijkstra.getPathTo(dijkstra.getDestinationId()));
+	    logger.log(Level.INFO, "\n Shortest path from station with id="+ dijkstra.getInitialStationId()+ 
+				" to station with id=" + dijkstra.getDestinationId() + " crosses next stations : \n"+ dijkstra.getPathTo(dijkstra.getDestinationId()));
 	    
 	}
 }

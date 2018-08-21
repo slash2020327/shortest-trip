@@ -9,15 +9,7 @@ public class Station extends AbstractEntity {
 	private Long cityId;
 	@JsonIgnore
 	private ArrayList<Road> neighborhood = new ArrayList<Road>();
-
-	public Station() {
-	}
-
-	public Station(Long id, String name) {
-		super(id);
-		this.name = name;
-	}
-
+	
 	public String getName() {
 		return name;
 	}
