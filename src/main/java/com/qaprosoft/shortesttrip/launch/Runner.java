@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import com.qaprosoft.shortesttrip.models.AdjacentStation;
 import com.qaprosoft.shortesttrip.models.Road;
 import com.qaprosoft.shortesttrip.models.Station;
-import com.qaprosoft.shortesttrip.models.transport.CityTransport;
+import com.qaprosoft.shortesttrip.models.transport.Transport;
 import com.qaprosoft.shortesttrip.searchalgorithm.Dijkstra;
 import com.qaprosoft.shortesttrip.searchalgorithm.Graph;
 import com.qaprosoft.shortesttrip.service.mybatis.impl.AdjacentStationService;
@@ -53,7 +53,7 @@ public class Runner {
 	    logger.log(Level.INFO, "\n Shortest path from station with id="+ dijkstra.getInitialStationId()+ 
 				" to station with id=" + dijkstra.getDestinationId() + " crosses next stations : \n"+ dijkstra.getPathTo(dijkstra.getDestinationId()));
 	    
-	    LinkedHashMap<Station, CityTransport> pathWithTransport = dijkstra.setTransport(dijkstra.getPathTo(dijkstra.getDestinationId()));
+	    LinkedHashMap<Station, Transport> pathWithTransport = dijkstra.setTransport(dijkstra.getPathTo(dijkstra.getDestinationId()));
 	    logger.log(Level.INFO, pathWithTransport);
 	    
 	}

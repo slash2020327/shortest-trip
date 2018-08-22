@@ -3,7 +3,7 @@ package com.qaprosoft.shortesttrip.searchalgorithm;
 import java.util.*;
 import com.qaprosoft.shortesttrip.models.Road;
 import com.qaprosoft.shortesttrip.models.Station;
-import com.qaprosoft.shortesttrip.models.transport.CityTransport;
+import com.qaprosoft.shortesttrip.models.transport.Transport;
 
 public class Dijkstra {
 
@@ -86,10 +86,12 @@ public class Dijkstra {
 		return path;
 	}
 
-	public LinkedHashMap<Station, CityTransport> setTransport(List<Station> path) {
-		LinkedHashMap<Station, CityTransport> pathWithTransport = new LinkedHashMap<Station, CityTransport>();
+	public LinkedHashMap<Station, Transport> setTransport(List<Station> path) {
+		LinkedHashMap<Station, Transport> pathWithTransport = new LinkedHashMap<Station, Transport>();
 		for (Station station : path) {
-			if (station.getBuses().size() > 0) {
+			if (station.getTrains().size() > 0) {
+				pathWithTransport.put(station, station.getTrains().get(0));
+			} if (station.getBuses().size() > 0) {
 				pathWithTransport.put(station, station.getBuses().get(0));
 			} if (station.getTrams().size() > 0) {
 				pathWithTransport.put(station, station.getTrams().get(0));

@@ -1,6 +1,6 @@
 package com.qaprosoft.shortesttrip.models.transport;
 
-public class Bus extends CityTransport{
+public class Bus extends Transport{
 
 	@Override
 	public String toString() {

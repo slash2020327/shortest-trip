@@ -4,7 +4,7 @@ import java.util.List;
 import com.qaprosoft.shortesttrip.models.AbstractEntity;
 import com.qaprosoft.shortesttrip.models.Station;
 
-public abstract class CityTransport extends AbstractEntity {
+public abstract class Transport extends AbstractEntity {
 
 	private Integer number;
 	private List<Station> stations;

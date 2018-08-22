@@ -33,7 +33,7 @@
 	</update>
 
 	<delete id="delete" parameterType="java.lang.Long">
-		DELETE FROM Buses WHERE id = #{id}
+		DELETE FROM Trams WHERE id = #{id}
 	</delete>
 
 </mapper>
