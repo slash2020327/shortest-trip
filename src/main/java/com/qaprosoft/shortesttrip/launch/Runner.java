@@ -1,5 +1,7 @@
 package com.qaprosoft.shortesttrip.launch;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -19,7 +21,7 @@ import com.qaprosoft.shortesttrip.service.mybatis.impl.StationService;
 public class Runner {
 	private static Logger logger = LogManager.getLogger();
 	private static final long START_STATION_ID = 1;
-	private static final long DESTINATION_STATION_ID = 20;
+	private static final long DESTINATION_STATION_ID = 100;
 
 	public static void main(String[] args) {
 		
@@ -48,7 +50,7 @@ public class Runner {
 	    Dijkstra dijkstra = new Dijkstra(graph, START_STATION_ID);
 	    Double shortDistance = dijkstra.getDistanceTo(DESTINATION_STATION_ID);	    
 	    logger.log(Level.INFO, "\n Distance from station with id="+ dijkstra.getInitialStationId()+ 
-	    		" to station with id=" + dijkstra.getDestinationId() + " equals "+ shortDistance);
+	    		" to station with id=" + dijkstra.getDestinationId() + " equals "+ new BigDecimal(shortDistance).setScale(1, RoundingMode.HALF_UP));
 	    
 	    logger.log(Level.INFO, "\n Shortest path from station with id="+ dijkstra.getInitialStationId()+ 
 				" to station with id=" + dijkstra.getDestinationId() + " crosses next stations : \n"+ dijkstra.getPathTo(dijkstra.getDestinationId()));
