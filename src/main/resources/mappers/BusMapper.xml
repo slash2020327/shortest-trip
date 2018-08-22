@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qaprosoft.shortesttrip.service.IBusService">
+
+	<resultMap id="bus"
+		type="com.qaprosoft.shortesttrip.models.transport.Bus">
+		<id property="id" column="id" />
+		<result property="number" column="number" />
+	</resultMap>
+
+	<select id="getById" parameterType="java.lang.Long" resultMap="bus">
+		SELECT * FROM Buses WHERE id = #{id}
+	</select>
+
+	<select id="getAll" resultMap="bus">
+		SELECT * FROM Buses
+	</select>
+	
+	<select id="getBusesByStationId" parameterType="java.lang.Long" resultMap="bus">	
+		SELECT Buses.id, Buses.number FROM Buses INNER JOIN Buses_has_Stations ON Buses_has_Stations.bus_id=Buses.id INNER JOIN Stations ON Stations.id=Buses_has_Stations.station_id WHERE Stations.id = #{id}	
+	</select>
+
+	<insert id="create" parameterType="com.qaprosoft.shortesttrip.models.transport.Bus" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Buses(number)
+		VALUES(#{number})
+	</insert>
+
+	<update id="update" parameterType="com.qaprosoft.shortesttrip.models.transport.Bus">
+		UPDATE Buses SET number = #{number} WHERE id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		DELETE FROM Buses WHERE id = #{id}
+	</delete>
+
+</mapper>

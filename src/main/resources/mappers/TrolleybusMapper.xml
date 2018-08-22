@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qaprosoft.shortesttrip.service.ITrolleybusService">
+
+	<resultMap id="trolleybus"
+		type="com.qaprosoft.shortesttrip.models.transport.Trolleybus">
+		<id property="id" column="id" />
+		<result property="number" column="number" />
+	</resultMap>
+
+	<select id="getById" parameterType="java.lang.Long" resultMap="trolleybus">
+		SELECT * FROM Trolleybuses WHERE id = #{id}
+	</select>
+
+	<select id="getAll" resultMap="trolleybus">
+		SELECT * FROM Trolleybuses
+	</select>
+
+    <select id="getTrolleybusesByStationId" parameterType="java.lang.Long" resultMap="trolleybus">	
+		SELECT Trolleybuses.id, Trolleybuses.number FROM Trolleybuses INNER JOIN Trolleybuses_has_Stations ON Trolleybuses_has_Stations.trolleybus_id=Trolleybuses.id INNER JOIN Stations ON Stations.id=Trolleybuses_has_Stations.station_id WHERE Stations.id = #{id}	
+	</select>
+	
+	<insert id="create" parameterType="com.qaprosoft.shortesttrip.models.transport.Trolleybus" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Trolleybuses(number)
+		VALUES(#{number})
+	</insert>
+
+	<update id="update" parameterType="com.qaprosoft.shortesttrip.models.transport.Trolleybus">
+		UPDATE Trolleybuses SET number = #{number} WHERE id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		DELETE FROM Trolleybuses WHERE id = #{id}
+	</delete>
+
+</mapper>

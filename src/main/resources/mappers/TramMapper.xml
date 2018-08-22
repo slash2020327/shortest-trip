@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qaprosoft.shortesttrip.service.ITramService">
+
+	<resultMap id="tram"
+		type="com.qaprosoft.shortesttrip.models.transport.Tram">
+		<id property="id" column="id" />
+		<result property="number" column="number" />
+	</resultMap>
+
+	<select id="getById" parameterType="java.lang.Long" resultMap="tram">
+		SELECT * FROM Trams WHERE id = #{id}
+	</select>
+
+	<select id="getAll" resultMap="tram">
+		SELECT * FROM Trams
+	</select>
+	
+	<select id="getTramsByStationId" parameterType="java.lang.Long" resultMap="tram">	
+		SELECT Trams.id, Trams.number FROM Trams INNER JOIN Stations_has_Trams ON Stations_has_Trams.tram_id=Trams.id INNER JOIN Stations ON Stations.id=Stations_has_Trams.station_id WHERE Stations.id = #{id}	
+	</select>
+
+	<insert id="create" parameterType="com.qaprosoft.shortesttrip.models.transport.Tram" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Trams(number)
+		VALUES(#{number})
+	</insert>
+
+	<update id="update" parameterType="com.qaprosoft.shortesttrip.models.transport.Tram">
+		UPDATE Trams SET number = #{number} WHERE id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		DELETE FROM Buses WHERE id = #{id}
+	</delete>
+
+</mapper>

@@ -9,6 +9,9 @@
 		<id property="id" column="id" />
 		<result property="name" column="name" />
 		<result property="cityId" column="city_id" />
+		<collection property="buses" column="id" javaType="ArrayList" ofType="com.qaprosoft.shortesttrip.models.transport.Bus" select="com.qaprosoft.shortesttrip.service.IBusService.getBusesByStationId" />
+		<collection property="trams" column="id" javaType="ArrayList" ofType="com.qaprosoft.shortesttrip.models.transport.Tram" select="com.qaprosoft.shortesttrip.service.ITramService.getTramsByStationId" />
+		<collection property="trolleybuses" column="id" javaType="ArrayList" ofType="com.qaprosoft.shortesttrip.models.transport.Trolleybus" select="com.qaprosoft.shortesttrip.service.ITrolleybusService.getTrolleybusesByStationId" />
 	</resultMap>
 	
 	<select id="getById" parameterType="java.lang.Long" resultMap="station">

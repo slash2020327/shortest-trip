@@ -3,9 +3,10 @@ package com.qaprosoft.shortesttrip.searchalgorithm;
 import java.util.*;
 import com.qaprosoft.shortesttrip.models.Road;
 import com.qaprosoft.shortesttrip.models.Station;
+import com.qaprosoft.shortesttrip.models.transport.CityTransport;
 
 public class Dijkstra {
-	
+
 	private Graph graph;
 	private Long initialStationId;
 	private Long destinationId;
@@ -27,17 +28,19 @@ public class Dijkstra {
 			public int compare(Station one, Station two) {
 				Double distanceOne = Dijkstra.this.distances.get(one.getId());
 				Double distanceTwo = Dijkstra.this.distances.get(two.getId());
-				if (distanceOne>distanceTwo) return 1;
-				if (distanceOne<distanceTwo) return -1;
+				if (distanceOne > distanceTwo)
+					return 1;
+				if (distanceOne < distanceTwo)
+					return -1;
 				return 0;
 			}
 		});
-		this.visitedStations = new HashSet<Station>();		
+		this.visitedStations = new HashSet<Station>();
 		for (Long key : stationKeys) {
 			this.predecessors.put(key, null);
 			this.distances.put(key, Double.MAX_VALUE);
 		}
-		this.distances.put(initialStationId, (double) 0);		
+		this.distances.put(initialStationId, (double) 0);
 		Station initialStation = this.graph.getStation(initialStationId);
 		ArrayList<Road> initialStationNeighbors = initialStation.getNeighbors();
 		for (Road road : initialStationNeighbors) {
@@ -46,12 +49,12 @@ public class Dijkstra {
 			this.distances.put(other.getId(), road.getDistance());
 			this.availableStations.add(other);
 		}
-		this.visitedStations.add(initialStation);	
+		this.visitedStations.add(initialStation);
 		processGraph();
 	}
 
-	private void processGraph() {		
-		while (this.availableStations.size() > 0) {			
+	private void processGraph() {
+		while (this.availableStations.size() > 0) {
 			Station next = this.availableStations.poll();
 			Double distanceToNext = this.distances.get(next.getId());
 			List<Road> nextNeighbors = next.getNeighbors();
@@ -83,6 +86,20 @@ public class Dijkstra {
 		return path;
 	}
 
+	public LinkedHashMap<Station, CityTransport> setTransport(List<Station> path) {
+		LinkedHashMap<Station, CityTransport> pathWithTransport = new LinkedHashMap<Station, CityTransport>();
+		for (Station station : path) {
+			if (station.getBuses().size() > 0) {
+				pathWithTransport.put(station, station.getBuses().get(0));
+			} if (station.getTrams().size() > 0) {
+				pathWithTransport.put(station, station.getTrams().get(0));
+			} if (station.getTrolleybuses().size() > 0) {
+				pathWithTransport.put(station, station.getTrolleybuses().get(0));
+			}
+		}
+		return pathWithTransport;
+	}
+
 	public Double getDistanceTo(Long destinationLabel) {
 		this.destinationId = destinationLabel;
 		return this.distances.get(destinationLabel);
@@ -95,5 +112,5 @@ public class Dijkstra {
 	public Long getDestinationId() {
 		return destinationId;
 	}
-	
+
 }
