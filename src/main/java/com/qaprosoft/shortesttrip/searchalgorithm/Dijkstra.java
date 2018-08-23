@@ -1,6 +1,7 @@
 package com.qaprosoft.shortesttrip.searchalgorithm;
 
 import java.util.*;
+import com.qaprosoft.shortesttrip.models.Path;
 import com.qaprosoft.shortesttrip.models.Road;
 import com.qaprosoft.shortesttrip.models.Station;
 import com.qaprosoft.shortesttrip.models.transport.Transport;
@@ -86,22 +87,22 @@ public class Dijkstra {
 		return path;
 	}
 
-	public LinkedHashMap<Station, Transport> setTransport(List<Station> path) {
+	public Path setTransport(List<Station> path) {
+		Path shortestPath = new Path();
 		LinkedHashMap<Station, Transport> pathWithTransport = new LinkedHashMap<Station, Transport>();
 		for (Station station : path) {
 			if (station.getTrains().size() > 0) {
 				pathWithTransport.put(station, station.getTrains().get(0));
-			} if (station.getBuses().size() > 0) {
+			} else if (station.getBuses().size() > 0) {
 				pathWithTransport.put(station, station.getBuses().get(0));
-			} if (station.getTrams().size() > 0) {
+			} else if (station.getTrams().size() > 0) {
 				pathWithTransport.put(station, station.getTrams().get(0));
-			} if (station.getTrolleybuses().size() > 0) {
+			} else if (station.getTrolleybuses().size() > 0) {
 				pathWithTransport.put(station, station.getTrolleybuses().get(0));
-			} if (station.getTaxi().size() > 0) {
-				pathWithTransport.put(station, station.getTaxi().get(0));
-			}
+			} else { pathWithTransport.put(station, station.getTaxi().get(0)); }
 		}
-		return pathWithTransport;
+		shortestPath.setPath(pathWithTransport);
+		return shortestPath;
 	}
 
 	public Double getDistanceTo(Long destinationLabel) {

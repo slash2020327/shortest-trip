@@ -2,17 +2,14 @@ package com.qaprosoft.shortesttrip.launch;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.LinkedHashMap;
 import java.util.List;
-
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.qaprosoft.shortesttrip.models.AdjacentStation;
+import com.qaprosoft.shortesttrip.models.Path;
 import com.qaprosoft.shortesttrip.models.Road;
 import com.qaprosoft.shortesttrip.models.Station;
-import com.qaprosoft.shortesttrip.models.transport.Transport;
 import com.qaprosoft.shortesttrip.searchalgorithm.Dijkstra;
 import com.qaprosoft.shortesttrip.searchalgorithm.Graph;
 import com.qaprosoft.shortesttrip.service.mybatis.impl.AdjacentStationService;
@@ -55,8 +52,8 @@ public class Runner {
 	    logger.log(Level.INFO, "\n Shortest path from station with id="+ dijkstra.getInitialStationId()+ 
 				" to station with id=" + dijkstra.getDestinationId() + " crosses next stations : \n"+ dijkstra.getPathTo(dijkstra.getDestinationId()));
 	    
-	    LinkedHashMap<Station, Transport> pathWithTransport = dijkstra.setTransport(dijkstra.getPathTo(dijkstra.getDestinationId()));
-	    logger.log(Level.INFO, pathWithTransport);
+	    Path pathWithTransport = dijkstra.setTransport(dijkstra.getPathTo(dijkstra.getDestinationId()));
+	    logger.log(Level.INFO, pathWithTransport.getPath());
 	    
 	}
 }
