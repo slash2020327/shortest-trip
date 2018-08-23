@@ -13,6 +13,7 @@
 		<collection property="trams" column="id" javaType="ArrayList" ofType="com.qaprosoft.shortesttrip.models.transport.Tram" select="com.qaprosoft.shortesttrip.service.ITramService.getTramsByStationId" />
 		<collection property="trolleybuses" column="id" javaType="ArrayList" ofType="com.qaprosoft.shortesttrip.models.transport.Trolleybus" select="com.qaprosoft.shortesttrip.service.ITrolleybusService.getTrolleybusesByStationId" />
 		<collection property="trains" column="id" javaType="ArrayList" ofType="com.qaprosoft.shortesttrip.models.transport.Train" select="com.qaprosoft.shortesttrip.service.ITrainService.getTrainsByStationId" />
+		<collection property="taxi" column="id" javaType="ArrayList" ofType="com.qaprosoft.shortesttrip.models.transport.Taxi" select="com.qaprosoft.shortesttrip.service.ITaxiService.getTaxiByStationId" />
 	</resultMap>
 	
 	<select id="getById" parameterType="java.lang.Long" resultMap="station">

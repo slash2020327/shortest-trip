@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.qaprosoft.shortesttrip.models.transport.Bus;
+import com.qaprosoft.shortesttrip.models.transport.Taxi;
 import com.qaprosoft.shortesttrip.models.transport.Train;
 import com.qaprosoft.shortesttrip.models.transport.Tram;
 import com.qaprosoft.shortesttrip.models.transport.Trolleybus;
@@ -16,6 +17,8 @@ public class Station extends AbstractEntity {
 	private List<Tram> trams;
 	private List<Trolleybus> trolleybuses;
 	private List<Train> trains;
+	private List<Taxi> taxi; 
+	
 	@JsonIgnore
 	private ArrayList<Road> neighborhood = new ArrayList<Road>();
 	
@@ -65,6 +68,14 @@ public class Station extends AbstractEntity {
 
 	public void setTrains(List<Train> trains) {
 		this.trains = trains;
+	}
+	
+	public List<Taxi> getTaxi() {
+		return taxi;
+	}
+
+	public void setTaxi(List<Taxi> taxi) {
+		this.taxi = taxi;
 	}
 
 	public void addNeighbor(Road road) {

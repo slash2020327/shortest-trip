@@ -4,6 +4,6 @@ public class Trolleybus extends Transport {
 
 	@Override
 	public String toString() {
-		return "Trolleybus [getNumber()=" + getNumber() + ", getId()=" + getId() + "]";
+		return "Trolleybus [Id=" + getId() + ", Number=" + getNumber() +"]";
 	}
 }

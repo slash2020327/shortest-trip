@@ -4,6 +4,6 @@ public class Tram extends Transport{
 
 	@Override
 	public String toString() {
-		return "Tram [getNumber()=" + getNumber() + ", getId()=" + getId() + "]";
+		return "Tram [Id=" + getId() + ", Number=" + getNumber() +"]";
 	}
 }

@@ -97,6 +97,8 @@ public class Dijkstra {
 				pathWithTransport.put(station, station.getTrams().get(0));
 			} if (station.getTrolleybuses().size() > 0) {
 				pathWithTransport.put(station, station.getTrolleybuses().get(0));
+			} if (station.getTaxi().size() > 0) {
+				pathWithTransport.put(station, station.getTaxi().get(0));
 			}
 		}
 		return pathWithTransport;

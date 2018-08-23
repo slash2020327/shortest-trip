@@ -25,5 +25,6 @@
 		<mapper resource="mappers/TramMapper.xml" />
 		<mapper resource="mappers/TrolleybusMapper.xml" />
 		<mapper resource="mappers/TrainMapper.xml" />
+		<mapper resource="mappers/TaxiMapper.xml" />
 	</mappers>
 </configuration>

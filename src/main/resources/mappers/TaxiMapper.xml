@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qaprosoft.shortesttrip.service.ITaxiService">
+
+	<resultMap id="taxi" type="com.qaprosoft.shortesttrip.models.transport.Taxi">
+		<id property="id" column="id" />
+		<result property="number" column="name" />
+	</resultMap>
+
+	<select id="getById" parameterType="java.lang.Long" resultMap="taxi">
+		SELECT * FROM Taxi WHERE id = #{id}
+	</select>
+
+	<select id="getAll" resultMap="taxi">
+		SELECT * FROM Taxi
+	</select>
+	
+	<select id="getTaxiByStationId" parameterType="java.lang.Long" resultMap="taxi">	
+		SELECT Taxi.id, Taxi.name FROM Taxi INNER JOIN Taxi_has_Stations ON Taxi_has_Stations.taxi_id=Taxi.id INNER JOIN Stations ON Stations.id=Taxi_has_Stations.stations_id WHERE Stations.id = #{id}	
+	</select>
+
+	<insert id="create" parameterType="com.qaprosoft.shortesttrip.models.transport.Taxi" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Taxi(name) VALUES(#{name})
+	</insert>
+
+	<update id="update" parameterType="com.qaprosoft.shortesttrip.models.transport.Taxi">
+		UPDATE Taxi SET name = #{name} WHERE id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		DELETE FROM Taxi WHERE id = #{id}
+	</delete>
+
+</mapper>
